@@ -3,7 +3,7 @@
 #include <tuple>
 #include <limits>
 
-int dijkstra(std::vector<std::tuple<int, int, int>> graph, int start, int end, int qt_vertexes);
+int *dijkstra(std::vector<std::tuple<int, int, int>> graph, int start, int end, int qt_vertexes);
 
 int main()
 {
@@ -36,17 +36,20 @@ int main()
         for (int i = 0; i < k; i++)
         {
             std::cin >> choosen_vertex;
-            objects_position.push_back(choosen_vertex);
+            objects_position.push_back(choosen_vertex - 1);
         }
-
-        std::cout << dijkstra(graph, 0, 2, n) << std::endl;
+        
+        for (int i = 0; i < objects_position.size(); i++)
+        {
+            
+        }
 
         t--;
     }
     return 0;
 }
 
-int dijkstra(std::vector<std::tuple<int, int, int>> graph, int start, int end, int qt_vertexes)
+int *dijkstra(std::vector<std::tuple<int, int, int>> graph, int start, int end, int qt_vertexes)
 {
     int distances[qt_vertexes];
     std::vector<std::tuple<int, int, int>> adj;
@@ -79,5 +82,5 @@ int dijkstra(std::vector<std::tuple<int, int, int>> graph, int start, int end, i
                 distances[std::get<1>(adj[j])] = distances[i] + std::get<2>(adj[j]);
         }
     }
-    return distances[end];
+    return distances;
 }
